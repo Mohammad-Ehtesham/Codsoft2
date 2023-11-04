@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <style>
+        body{
+            font-family: arial;
+            background-color: rgb(255, 255, 255);
+            display: flex;
+            color: whitesmoke;
+
+        }
+        img{
+            height: 30px;
+        }
+        button{
+            height: 60px;
+            width: 60px;
+            border-radius: 50px;
+            border: none;
+            margin-left: 30px;
+            font-size: 30px;
+            background: transparent;
+            cursor: pointer;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+        }
+        button:hover{
+            background-color:  rgb(227, 238, 129);
+        }
+        .calculation{
+            color: rgb(17, 16, 16);
+            margin-left: 40px;
+            font-size: 40px;
+            margin-top: 15px;
+            padding-top: 10px;
+        }
+
+        .orange-button{
+            color: rgb(243, 181, 46);
+        }
+        .shape{
+            margin-top: 60px;
+            margin-left: 100px;
+            width: 400px;
+            height: 500px;
+            background-color: rgb(241, 237, 178);
+            border-radius: 50px;
+            overflow: hidden;
+            transition: all .9s ease-in-out;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+        }
+        .shape:hover{
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+        }
+        .caltxt{
+        font-size: 40px; 
+        margin-left: 170px;
+        margin-top: 60px; 
+        text-indent: 0px; 
+        writing-mode: vertical-lr; 
+        letter-spacing: 19px;
+        text-shadow: 5px 5px 4px rgb(71, 70, 70);
+
+        }
+    </style>
+</head>
+<body>
+    <p class="caltxt">Calculator--</p>
+    <div class="shape">
+        <p class="js-calculation calculation"> 0</p>
+    <p>
+        <button  class="orange-button" onclick="
+        calculation = '';
+        
+        // Display the calculation on the page
+        // instead of console.log
+        displayCalculation();
+
+        localStorage.setItem('calculation', calculation);
+      ">C</button>
+        <button><img src="left-arrow.png"></button>
+        <button  class="orange-button" onclick="
+        updateCalculation('%');
+        ">%</button>
+        <button  class="orange-button" onclick="
+        updateCalculation('/');
+        ">÷</button>
+    </p>
+    <p>
+        <button onclick="
+            updateCalculation('7');
+            ">7</button>
+
+        <button onclick="
+            updateCalculation('8');
+            ">8</button>
+
+        <button onclick="
+            updateCalculation('9');
+            ">9</button>
+
+        <button  class="orange-button" onclick="
+        updateCalculation('*');
+        ">x</button>
+    </p>
+    <p>
+        <button onclick="
+        updateCalculation('4');
+        ">4</button>
+        
+        <button onclick="
+        updateCalculation('5');
+        ">5</button>
+
+        <button onclick="
+            updateCalculation('6');
+            ">6</button>
+
+        <button  class="orange-button" onclick="
+        updateCalculation('-');
+        ">-</button>
+    </p>
+    <p>
+        <button onclick="
+        updateCalculation('1');
+        ">1</button>
+
+        <button onclick="
+        updateCalculation('2');
+        ">2</button>
+
+        <button onclick="
+        updateCalculation('3');
+        ">3</button>
+
+        <button  class="orange-button" onclick="
+        updateCalculation('+');
+        ">+</button>
+    </p>
+    <p>
+        <button onclick="
+        updateCalculation('00');
+        ">00</button>
+
+        <button onclick="
+        updateCalculation('0');
+        ">0</button>
+
+        <button onclick="
+        updateCalculation('.');
+        ">.</button>
+
+        <button  class="orange-button" onclick="
+        calculation = eval(calculation);
+
+        displayCalculation();
+       
+        localStorage.setItem('calculation',calculation);
+        ">=</button>
+    </p>
+</div>
+    <script>
+        let calculation = localStorage.getItem('calculation') || '';
+        displayCalculation(0);
+
+        function updateCalculation(value) {
+            
+            calculation+=value;
+            displayCalculation();
+            localStorage.setItem('calculation',calculation);
+        }
+        function displayCalculation() {
+            document.querySelector('.js-calculation').innerHTML = calculation;
+        }
+    </script>
+</body>
+</html>
